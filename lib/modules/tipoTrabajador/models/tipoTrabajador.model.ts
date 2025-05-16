@@ -1,20 +1,23 @@
 import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-export interface ITrabajador extends mongoose.Document {  
-    trabajador: string;
+export interface ITipoTrabajador extends mongoose.Document {  
+    tipoTrabajador: string;
+    salario: number;
 }
+    
 
- const TrabajadorSchema = new Schema(
-    {
-        trabajador: {
-            type: String,
-            required: [true, 'trabajador required'],
-            unique: true
-        }
+const TipoTrabajadorSchema = new Schema({
+    tipoTrabajador: {
+        type: String,
+        required: [true, 'tipoTrabajador es requerido'],
+        unique: true
+    },
+    salario: {
+        type: Number,
+        required: [true, 'salario es requerido']
     }
-        +
- );
+});
 
-const Trabajador = mongoose.model<ITrabajador>("Trabajador", TrabajadorSchema);
-export default Trabajador;
+const TipoTrabajador = mongoose.model<ITipoTrabajador>("TipoTrabajador", TipoTrabajadorSchema);
+export default TipoTrabajador;
